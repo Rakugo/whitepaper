@@ -21,10 +21,10 @@ Rakugo revolutionizes online publishing through notarization and monetization on
 \end{abstract}
 
 \section{Rakugo Platform}
-The functionality of the Rakugo platform abstracts crowdsale analytics and interaction with the Ethereum blockchain with an intuitive user interface. Our approach is a web application that combines content management with the functionality of an ethereum wallet. Revenue is generated from published content and distributed to holders of tokens representing online content. Content producers can choose to have funds transferred as USD or as ETH via our revenue distribution model outlined below.
+The functionality of the Rakugo platform abstracts crowdsale analytics and interaction with the Ethereum blockchain with an intuitive user interface. Our approach is a web application that combines content management with the functionality of an ethereum wallet. Royalties are generated from published content and distributed to holders of tokens representing online content. Content producers can choose to have funds transferred as USD or as ETH via our royalty distribution model outlined below.
 
-Rakugo creates a digital representation of digital content on the Ethereum blockchain by deploying an ERC20-standard token-creating smart contract with a unique digital fingerprint. Content is notarized by the deployment of the contract and ownership of the content is represented by the ownership of these tokens. The parameters of token creation and ownership structure are supplied by the creator during deployment of the smart contract. Tokens can be traded or held via an ownership model of the creator's choosing. Revenue is generated when content is published through Rakugo and is dispersed based upon the owner's chosen configuration.
 
+Rakugo creates a digital representation of digital content on the Ethereum blockchain by deploying an ERC20-standard token-creating smart contract with a unique digital fingerprint. Content is notarized by the deployment of the contract and ownership of the content is represented by the ownership of these tokens. The parameters of token creation and ownership structure are supplied by the creator during deployment of the smart contract. Tokens can be traded or held via an ownership model of the creator's choosing. Royalties are generated when content is published through Rakugo and is dispersed based upon the owner's chosen configuration.
 The ways in which a creator can issue representations of their content are boundless and Rakugo empowers users to try anything without the burden of writing or deploying code to the Ethereum network. 
 Rakugo empowers all creatives with the ability to notarize and monetize their work with the security and accessibility of a distributed ledger that blockchains provide.
 
@@ -32,42 +32,9 @@ Rakugo empowers all creatives with the ability to notarize and monetize their wo
 \section{Rakugo Assetization}
 The crux of Rakugo’s value is our ability to "assetize" or create a digital representation of content on the Ethereum blockchain. These representations are referred to as 'Namespace Tokens', as their publicly accessible name attribute is composed of a logical grouping of unique identifiers.
 
-ERC20-standard 'Namespace Tokens' are created via smart contract, each with an identifying payload that notarizes the content and its creator. The following JSON schema describes information that will be available after decompression of a token’s digital fingerprint attribute
+ERC20-standard 'Namespace Tokens' are created via smart contract, each with an identifying payload that notarizes the content and its creator. Figure 1 schema describes information that will be available after decompression of a token’s digital fingerprint attribute
 
-\begin{lstlisting}[language=java]
-{
-    "$schema": "digital_fingerprint",
-    "definitions": {},
-    "id": "https://rakugo.co/whitepaper",
-    "properties": {
-        "compressedContent": {
-            "id": "/properties/compressedContent",
-            "items": {
-                "id": "/properties/compressedContent/items",
-                "type": "integer"
-            },
-            "type": "array"
-        },
-        "link": {
-            "id": "/properties/link",
-            "type": "string"
-        },
-        "name": {
-            "id": "/properties/name",
-            "type": "string"
-        },
-        "publishDate": {
-            "id": "/properties/publishDate",
-            "type": "string"
-        }
-    },
-    "type": "object"
-}
-
-
-\end{lstlisting}
-
-A JSON object corresponding to the schema above is compressed and added as a public attribute of the token creation contract as the pseudo-solidity code below
+This JSON object corresponding to the schema above is compressed and added as a public attribute of the token creation contract as the pseudo-solidity code below
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[language=java]
@@ -88,20 +55,25 @@ contract MyToken {
 \end{lstlisting}
 \end{minipage}
 
-\section{Rakugo Revenue Distribution}
+\section{ERC-223 Compatibility}
+We have are monitoring the ERC-223 token standard proposal\footnote{https://github.com/ethereum/EIPs/issues/223} and are factoring future compatibility of into the design of our Namespace tokens.
 
-The Namespace Tokens described above are the tool used to redeem revenue from the Rakugo platform. Revenue (at the owner's choice) can be disbursed to token holders via a smart contract where the token(s) is used to attribute the correct allocation of revenue to its holder. This decentralized approach allows users to freely manage their assets without relying on the Rakugo platform if they so choose. Users also have the ability to automate the revenue distribution through our the Rakugo platform.
+\section{Rakugo Royalty Distribution}
 
-This model provides a safer approach to revenue distribution than similar Dapps that rely on a third-party API (such as a block explorer for finding wallet addresses of token holders). Distribution occurs via a handshake where a token(s) is sent to a smart contract and revenue along with the token(s) is sent back to the token holder. Thus if this wallet address is not hosted through our platform we can verify ownership and safely disburse revenue to the rightful owner.
+The Namespace Tokens described above are the tool used to redeem royalties from the Rakugo platform. Royalties (at the owner's choice) can be disbursed to token holders via a smart contract where the token(s) is used to attribute the correct allocation of royalties to its holder. This decentralized approach allows users to freely manage their assets without relying on the Rakugo platform if they so choose. Users also have the ability to automate the royalties distribution through our the Rakugo platform.
+
+This model provides a safer approach to royalty distribution than similar Dapps that rely on a third-party API (such as a block explorer for finding wallet addresses of token holders). Distribution occurs via a handshake where a token(s) is sent to a smart contract and royalties along with the token(s) is sent back to the token holder. Thus if this wallet address is not hosted through our platform we can verify ownership and safely disburse royalties to the rightful owner.
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.65]{revenue_dispersal.png}
-\caption{Revenue Distribution Architecture}
+\includegraphics[scale=0.65]{royalty_dispersal.png}
+\caption{Royalty Distribution Architecture}
 \end{figure}
 
 \section{Smart Publishing}
-Rakugo employs a "Smart Publishing" approach to revenue optimization which prioritizes relevance to trending topics on top search engines. Tailoring content to match trending topics increases search engine exposure, revenue generation and overall influence of the content producer. Content is matched to currently trending topics via a proprietary topic modeling algorithm and suggestions that increase relevance to these topics are provided to the producer. Beyond that, Rakugo seizes opportunities to drive emerging trends, increasing the overall influence and value of the Rakugo platform. 
+As the Rakugo platform grows, we are presented with a unique opportunity to optimize overall royalty generation by leveraging our scale. Below details our approach to scaling the Rakugo Platform and optimizing royalty generation with real-time machine learning.
+
+Rakugo employs a "Smart Publishing" approach to royalty optimization which prioritizes relevance to trending topics on top search engines. Tailoring content to match trending topics increases search engine exposure, royalty generation and overall influence of the content producer. Content is matched to currently trending topics via a proprietary topic modeling algorithm and a suggestions that increase relevance to these topics are provided to the producer. Beyond that, Rakugo seizes opportunities to drive emerging trends, increasing the overall influence and value of the Rakugo platform. 
 
 Trends are identifiable across streams of data using a cross dependence temporal topic model (CDTTM)\footnote{Wang, X., Zhai, C., Hu, X., Sproat, R.: Mining correlated bursty topic patterns from coordinated text streams. In: Proceedings of the 13th ACM International Conference on Knowledge Discovery in Data Mining, pp. 784–793 (2007)}. A cross dependence temporal topic model identifies dependent and temporal correlation across streams streams of data for building correlated generative processes with mutual reinforcement.\footnote{Blei, D.M., Lafferty, J.D.: Dynamic topic models. In: Proceedings of the 23rd International Conference on Machine Learning, pp. 113–120 (2006)}
 
@@ -112,7 +84,7 @@ parameters.
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.4]{CDTTM2.png}
+\includegraphics[scale=0.4]{CDTTM.png}
 \caption{Cross Dependant Temporal Topic Model\textsuperscript{1}}
 \end{figure}
 
@@ -144,5 +116,42 @@ The Rakugo Smart Publishing Engine recommends edits to content based upon trendi
 \section{Conclusion}
 The Rakugo Platform combined with our smart publishing engine provides a next generation approach to content management and publishing. Unlike other applications like Medium, Buzzfeed or Steemit content creators own the rights to their content through copyright and get paid their fair royalties as actual money. Rakugo goes beyond that by optimizing royalty generation, influence and the ability to monetize or share value as the user chooses. These details will be abstracted by an intuitive user interface but will also be accessible to power users via public a API.
 
+\newpage
+
+\renewcommand{\lstlistingname}{Appendix}
+\begin{lstlisting}[caption={Digital Fingerprint},captionpos=b, language=java,numbers=none]
+
+{
+    "$schema": "digital_fingerprint",
+    "definitions": {},
+    "id": "https://rakugo.co/whitepaper",
+    "properties": {
+        "compressedContent": {
+            "id": "/properties/compressedContent",
+            "items": {
+                "id": "/properties/compressedContent/items",
+                "type": "integer"
+            },
+            "type": "array"
+        },
+        "link": {
+            "id": "/properties/link",
+            "type": "string"
+        },
+        "name": {
+            "id": "/properties/name",
+            "type": "string"
+        },
+        "publishDate": {
+            "id": "/properties/publishDate",
+            "type": "string"
+        }
+    },
+    "type": "object"
+}
+
+\end{lstlisting}
+
 \bibliographystyle{plain}
 \end{document}
+
